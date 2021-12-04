@@ -1,28 +1,31 @@
 package tn.esprit.spring;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.List;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import tn.esprit.spring.entities.Employe;
+
 import tn.esprit.spring.entities.Mission;
 
 import tn.esprit.spring.entities.TimesheetPK;
 
-import tn.esprit.spring.services.TimesheetServiceImpl;
 
+import tn.esprit.spring.services.TimesheetServiceImpl;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class TimesheetTest {
@@ -73,6 +76,31 @@ public class TimesheetTest {
      logger.info("Method execution time: " + elapsedTime + " milliseconds.");
      logger.info("Timesheet est ajoutée");
 	
-	}	
+	}
+
+    @Test
+    public void testfindAllMissionByEmployeJPQL(){
+        logger.info("dans testfindAllMissionByEmployeJPQL ");
+        logger.debug("findAllMissionByEmployeJPQL a commencé .");
+        List<Mission> missions = timesheetService.findAllMissionByEmployeJPQL(1);
+        assertTrue(missions.size()<10);
+        long start = System.currentTimeMillis();
+        long elapsedTime = System.currentTimeMillis() - start;
+        logger.info("Method execution time: " + elapsedTime + " milliseconds.");
+        logger.info("Timesheet est ajoutée");
+    }
+
+    @Test
+    public void testgetAllEmployeByMission(){
+        logger.info("dans testgetAllEmployeByMission ");
+        logger.debug("testgetAllEmployeByMission a commencé .");
+        List<Employe> employees = timesheetService.getAllEmployeByMission(1);
+        assertTrue(employees.size()<10);
+        long start = System.currentTimeMillis();
+        long elapsedTime = System.currentTimeMillis() - start;
+        logger.info("Method execution time: " + elapsedTime + " milliseconds.");
+        logger.info("Timesheet est ajoutée");
+
+    }
     
 }
