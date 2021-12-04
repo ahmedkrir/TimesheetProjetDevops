@@ -38,8 +38,9 @@ public class Employe implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	
+	private String password;
+
+
 	@JsonIgnore
 	@ManyToMany(mappedBy="employes",fetch=FetchType.EAGER)
 	private List<Departement> departements;
@@ -56,7 +57,16 @@ public class Employe implements Serializable {
 	public Employe() {
 		super();
 	}
-	
+
+	public Employe(String nom, String prenom, String email, String password, boolean isActif, Role role) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.password = password;
+		this.isActif = isActif;
+		this.role = role;
+	}
+
 	public Employe(String nom, String prenom, String email, boolean isActif, Role role) {
 		this.nom = nom;
 		this.prenom = prenom;
@@ -111,6 +121,13 @@ public class Employe implements Serializable {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<Departement> getDepartements() {
