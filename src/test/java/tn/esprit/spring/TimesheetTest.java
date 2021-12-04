@@ -26,7 +26,7 @@ import tn.esprit.spring.entities.TimesheetPK;
 
 
 import tn.esprit.spring.services.TimesheetServiceImpl;
-@SpringBootTest(classes = {TimesheetTest.class})
+@SpringBootTest
 @RunWith(SpringRunner.class)
 public class TimesheetTest {
 
